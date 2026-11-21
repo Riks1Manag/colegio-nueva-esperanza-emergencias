@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Emergencias | Colegio Nueva Esperanza</title>
+
+<style>
+:root {
+  --bg: #f3f6fb;
+  --navy: #10243b;
+  --blue: #1d4e89;
+  --accent: #e63946;
+  --text: #233247;
+  --muted: #6c7b8f;
+  --white: #ffffff;
+  --border: #e0e7ef;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 24px 6%;
+}
+
+.brand {
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: .8;
+  margin-bottom: 22px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #c9d8e8;
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 18px;
+  background: #233c58;
+  padding: 8px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+  color: #d8e8f8;
+}
+
+.hero-icon {
+  font-size: 85px;
+}
+
+nav {
+  background: white;
+  padding: 14px 6%;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: var(--blue);
+}
+
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 35px 22px;
+}
+
+.section-title {
+  margin-bottom: 8px;
+  font-size: 23px;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 36px;
+}
+
+.metric {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.metric span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metric h2 {
+  margin-top: 10px;
+  font-size: 26px;
+  color: var(--navy);
+}
+
+.search-box {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  outline: none;
+}
+
+.search-box:focus {
+  border-color: var(--blue);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 22px;
+  border-radius: 14px;
+  transition: .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(16,36,59,.08);
+}
+
+.card .number {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card h3 {
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 62px;
+}
+
+.card button {
+  border: none;
+  background: #eaf1f8;
+  color: var(--blue);
+  padding: 10px 13px;
+  border-radius: 7px;
+  margin-top: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: var(--blue);
+  color: white;
+}
+
+.info-section {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 26px;
+  border-radius: 14px;
+  margin-top: 38px;
+}
+
+.info-section p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+}
+
+footer {
+  background: var(--navy);
+  color: #b8c9da;
+  text-align: center;
+  padding: 25px;
+  font-size: 13px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(6,15,28,.65);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  max-width: 480px;
+  width: 100%;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.modal-content h2 {
+  margin-bottom: 12px;
+}
+
+.modal-content p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.close {
+  margin-top: 22px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--navy);
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 550px) {
+  .cards { grid-template-columns: 1fr; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  nav { gap: 13px; }
+  .hero-icon { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">COLEGIO NUEVA ESPERANZA · GESTIÓN DEL RIESGO</div>
+  <div class="hero">
+    <div>
+      <h1>Plan de Emergencias</h1>
+      <p>Portal de consulta del Plan de Prevención, Preparación y Respuesta ante Emergencias. Un espacio para organizar la información, fortalecer la preparación y promover la protección de la comunidad educativa.</p>
+      <div class="status">● Proyecto académico · Propuesta conceptual</div>
+    </div>
+    <div class="hero-icon">🛡️</div>
+  </div>
+</header>
+
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#anexos">Anexos</a>
+  <a href="#plan">Plan de trabajo</a>
+  <a href="#capacitacion">Capacitación</a>
+  <a href="#proposito">Acerca del plan</a>
+</nav>
+
+<main id="inicio">
+
+  <h2 class="section-title">Panel de consulta</h2>
+  <p class="section-subtitle">Información general del proyecto y acceso a sus componentes.</p>
+
+  <div class="metrics">
+    <div class="metric">
+      <span>Anexos estructurados</span>
+      <h2>08</h2>
+    </div>
+    <div class="metric">
+      <span>Edificio de referencia</span>
+      <h2>3 pisos</h2>
+    </div>
+    <div class="metric">
+      <span>Área conceptual</span>
+      <h2>2.400 m²</h2>
+    </div>
+    <div class="metric">
+      <span>Población estudiantil</span>
+      <h2>200</h2>
+    </div>
+  </div>
+
+  <section id="anexos">
+    <h2 class="section-title">Repositorio de anexos</h2>
+    <p class="section-subtitle">Consulta los componentes del Plan de Prevención, Preparación y Respuesta ante Emergencias.</p>
+
+    <input type="text" id="search" class="search-box"
+      placeholder="Buscar anexo, procedimiento o tema...">
+
+    <div class="cards" id="cards">
+
+      <article class="card" data-search="uso suelo concepto urbanismo">
+        <span class="number">ANEXO 01</span>
+        <h3>Concepto de uso del suelo</h3>
+        <p>Consulta de las condiciones territoriales y urbanísticas consideradas en el proyecto.</p>
+        <button onclick="openModal('Concepto de uso del suelo','Anexo destinado a documentar la consulta y el concepto de uso del suelo del escenario institucional. El soporte documental se integrará aquí.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="vulnerabilidad amenazas personas recursos sistemas procesos">
+        <span class="number">ANEXO 02</span>
+        <h3>Análisis de vulnerabilidad</h3>
+        <p>Identificación de amenazas y evaluación de vulnerabilidad de personas, recursos y sistemas/procesos.</p>
+        <button onclick="openModal('Análisis de vulnerabilidad','Aquí se incorporará la matriz de amenazas y vulnerabilidad, junto con sus resultados y medidas de intervención.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="plan trabajo acciones actividades cronograma responsables">
+        <span class="number">ANEXO 03</span>
+        <h3>Plan de trabajo</h3>
+        <p>Actividades propuestas, programación, responsables y seguimiento de acciones.</p>
+        <button onclick="openModal('Plan de trabajo','Este apartado integrará el plan de trabajo de emergencias con actividades, responsables propuestos, plazos y evidencias de cumplimiento.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="capacitacion entrenamiento formacion simulacros">
+        <span class="number">ANEXO 04</span>
+        <h3>Plan de capacitación</h3>
+        <p>Programa de formación, entrenamiento y preparación de la comunidad educativa.</p>
+        <button onclick="openModal('Plan de capacitación','Aquí estará el programa de capacitación, incluyendo temas, población objetivo y programación propuesta.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="pon procedimientos operativos normalizados sismo incendio inundacion quimicos">
+        <span class="number">ANEXO 05</span>
+        <h3>Procedimientos PON</h3>
+        <p>Procedimientos de actuación frente a las amenazas identificadas en el escenario.</p>
+        <button onclick="openModal('Procedimientos PON','Este módulo permitirá consultar los Procedimientos Operativos Normalizados (PON) de las emergencias contempladas.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="sistema comando incidentes sci brigada niveles emergencia">
+        <span class="number">ANEXO 06</span>
+        <h3>Organización de emergencias</h3>
+        <p>Estructura del sistema de comando de incidentes, funciones y niveles de respuesta.</p>
+        <button onclick="openModal('Organización de emergencias','Se integrará la organización para la respuesta, el Sistema de Comando de Incidentes y los niveles de emergencia definidos en el plan.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="alarma alerta comunicacion evacuacion">
+        <span class="number">ANEXO 07</span>
+        <h3>Sistema de alarma y alerta</h3>
+        <p>Mecanismos de notificación, comunicación y activación para situaciones de emergencia.</p>
+        <button onclick="openModal('Sistema de alarma y alerta','Aquí se documentará el sistema de alarma, las señales de alerta y los mecanismos de comunicación de emergencia.')">Consultar anexo →</button>
+      </article>
+
+      <article class="card" data-search="planos mapa extintores botiquin evacuacion recursos">
+        <span class="number">ANEXO 08</span>
+        <h3>Planos y recursos</h3>
+        <p>Planos de referencia y ubicación de los elementos para la atención de emergencias.</p>
+        <button onclick="openModal('Planos y recursos','Este espacio se destinará a los planos y recursos para la atención de emergencias. La información sensible se mantendrá en versiones de acceso restringido.')">Consultar anexo →</button>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="info-section" id="plan">
+    <h2>Plan de trabajo</h2>
+    <p>Programación de las actividades propuestas para la intervención, preparación, implementación y seguimiento del Plan de Emergencias.</p>
+    <p><strong>Estado:</strong> Propuesta académica en construcción.</p>
+  </section>
+
+  <section class="info-section" id="capacitacion">
+    <h2>Plan de capacitación</h2>
+    <p>Programa de formación y entrenamiento orientado a fortalecer conocimientos y capacidades de prevención, preparación y respuesta de la comunidad educativa.</p>
+    <p><strong>Estado:</strong> Propuesta académica en construcción.</p>
+  </section>
+
+  <section class="info-section" id="proposito">
+    <h2>Acerca del plan</h2>
+    <p>Este portal es un complemento digital del documento formal del Plan de Prevención, Preparación y Respuesta ante Emergencias del Colegio Nueva Esperanza. Su finalidad es facilitar la organización y consulta de la información del proyecto.</p>
+    <p>El escenario institucional es de carácter conceptual y académico. La información presentada no constituye certificación de condiciones reales de seguridad de una institución.</p>
+  </section>
+
+</main>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+    <button class="close" onclick="closeModal()">Cerrar</button>
+  </div>
+</div>
+
+<footer>
+  Colegio Nueva Esperanza · Plan de Prevención, Preparación y Respuesta ante Emergencias<br>
+  Proyecto académico · Bogotá D.C.
+</footer>
+
+<script>
+function openModal(title, text) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-text').textContent = text;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.getElementById('search').addEventListener('input', function() {
+  const value = this.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display = card.dataset.search.includes(value) ? '' : 'none';
+  });
+});
+</script>
+
+</body>
+</html>
